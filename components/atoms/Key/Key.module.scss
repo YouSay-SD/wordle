@@ -1,12 +1,26 @@
-@import 'styles/baseline/_styles';
+@import "styles/baseline/_styles";
 
 .key {
-  background-color: black;
-  padding: 20px;
-  margin: 5px;
-  color: white;
+  @include font(18, 21);
+  @include flex-center;
+
+  font-weight: map-get($font-weights, "semi-bold");
+  background-color: var(--color-grey-regular);
+  color: var(--color-grey-heavy);
+  min-width: 44.5px;
+  min-height: 51px;
+  transition: $global-transition;
+  border-radius: 5px;
+  text-transform: uppercase;
 }
 
 .is-selected {
-  background-color: grey;
+  opacity: 0.5;
+}
+
+.enter,
+.backspace {
+  @include font(15, 18);
+
+  min-width: 71px;
 }
