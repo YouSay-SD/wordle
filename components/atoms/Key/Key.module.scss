@@ -1,17 +1,24 @@
 @import "styles/baseline/_styles";
 
 .key {
-  @include font(18, 21);
+  @include font(16, 19);
   @include flex-center;
 
   font-weight: map-get($font-weights, "semi-bold");
   background-color: var(--color-grey-regular);
   color: var(--color-grey-heavy);
-  min-width: 44.5px;
-  min-height: 51px;
+  min-width: 34.5px;
+  min-height: 41px;
   transition: $global-transition;
   border-radius: 5px;
   text-transform: uppercase;
+
+  @include respond-above(md) {
+    @include font(18, 21);
+
+    min-width: 44.5px;
+    min-height: 51px;
+  }
 }
 
 .is-selected {

@@ -1,0 +1,8 @@
+/* stylelint-disable selector-pseudo-class-no-unknown */
+@import "styles/baseline/_styles";
+
+.game {
+  display: grid;
+  gap: 54px;
+  justify-content: center;
+}
