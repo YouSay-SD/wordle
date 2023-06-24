@@ -1,0 +1,34 @@
+@import "styles/baseline/_styles";
+
+.slot {
+  @include font(35, 41);
+  @include flex-center;
+
+  color: var(--color-button-text);
+  background-color: var(--color-grey-light);
+  border-radius: 5px;
+  text-align: center;
+  font-weight: map-get($font-weights, "heavy");
+  text-transform: uppercase;
+
+  @include respond-above(md) {
+    min-width: 76px;
+    min-height: 75px;
+  }
+}
+
+.correct {
+  background-color: var(--color-primary);
+}
+
+.wrong {
+  background-color: var(--color-grey-regular);
+}
+
+.close {
+  background-color: var(--color-secondary);
+}
+
+.empty {
+  background-color: var(--color-grey-light);
+}
