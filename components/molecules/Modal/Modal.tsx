@@ -6,8 +6,6 @@ import className from 'classnames/bind'
 
 const cx = className.bind(styles)
 
-ReactModal.setAppElement('#__next')
-
 const Modal: FC<ModalProps> = ({
   className,
   onRequestClose,
@@ -22,10 +20,10 @@ const Modal: FC<ModalProps> = ({
   return (
     <ReactModal
       isOpen={isOpen}
-      // className={cx(['modal', className])}
       contentLabel={contentLabel}
       onRequestClose={onRequestClose}
       onAfterOpen={onAfterOpen}
+      ariaHideApp={false}
       {...props}
     >
       {children}

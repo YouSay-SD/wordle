@@ -6,10 +6,11 @@ import { addSlot } from '@/helpers/addSlot'
 import { validateSlots } from '@/helpers/validateSlots'
 
 export interface UseWordleProps {
-  word: string
+  word: string,
+  isGameStarted: boolean
 }
 
-export const useWordle = ({ word }: UseWordleProps) => {
+export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
   const wordMaped = word.split('')
   const columnsQuantity = word.length
   const { slotsMaped } = useCreateSlots({ columnsQuantity })
@@ -28,32 +29,34 @@ export const useWordle = ({ word }: UseWordleProps) => {
 
   useEffect(() => {
     const onKeyPress = (e: KeyboardEvent) => {
-      const key = e.key.toLowerCase()
-      const isKeyAllowed = KEYBOARD_SET.some((keyValue) => keyValue.key === key)
-      if (isKeyAllowed) {
-        const wasEnterPressed = key === ENTER_KEY
-        const wasBackspacePressed = key === BACKSPACE_KEY
-        const currentSlot = slots.find(({ index }) => index === indexPosition)
+      if (isGameStarted) {
+        const key = e.key.toLowerCase()
+        const isKeyAllowed = KEYBOARD_SET.some((keyValue) => keyValue.key === key)
+        if (isKeyAllowed) {
+          const wasEnterPressed = key === ENTER_KEY
+          const wasBackspacePressed = key === BACKSPACE_KEY
+          const currentSlot = slots.find(({ index }) => index === indexPosition)
 
-        // Back Slot
-        if (wasBackspacePressed && indexPosition > limitBackPosition) {
-          const { slotsUpdated } = deleteSlot({ slots, indexPosition })
-          setSlots([...slotsUpdated])
-          setIndexPosition((prev) => prev - 1)
-        }
+          // Back Slot
+          if (wasBackspacePressed && indexPosition > limitBackPosition) {
+            const { slotsUpdated } = deleteSlot({ slots, indexPosition })
+            setSlots([...slotsUpdated])
+            setIndexPosition((prev) => prev - 1)
+          }
 
-        setKeySelected(key)
+          setKeySelected(key)
 
-        // Next Slot
-        if (!wasBackspacePressed && !wasEnterPressed && indexPosition < slots.length) {
-          const { slotsUpdated } = addSlot({ slots, indexPosition, key })
-          setSlots([...slotsUpdated])
-          setIndexPosition((prev) => prev + 1)
+          // Next Slot
+          if (!wasBackspacePressed && !wasEnterPressed && indexPosition < slots.length) {
+            const { slotsUpdated } = addSlot({ slots, indexPosition, key })
+            setSlots([...slotsUpdated])
+            setIndexPosition((prev) => prev + 1)
 
-          if (currentSlot?.position === columnsQuantity) {
-            setLimitBackPosition(limitBackPosition + columnsQuantity)
-            const { slotsValidated } = validateSlots({ slots: slotsUpdated, key, wordMaped })
-            setSlots([...slotsValidated])
+            if (currentSlot?.position === columnsQuantity) {
+              setLimitBackPosition(limitBackPosition + columnsQuantity)
+              const { slotsValidated } = validateSlots({ slots: slotsUpdated, key, wordMaped })
+              setSlots([...slotsValidated])
+            }
           }
         }
       }
@@ -63,7 +66,7 @@ export const useWordle = ({ word }: UseWordleProps) => {
     return () => {
       window.removeEventListener('keydown', onKeyPress)
     }
-  }, [columnsQuantity, indexPosition, keySelected, limitBackPosition, slots, wordMaped])
+  }, [columnsQuantity, indexPosition, keySelected, limitBackPosition, slots, wordMaped, isGameStarted])
 
   return { slots, resetGame, columnsQuantity, keySelected }
 }
