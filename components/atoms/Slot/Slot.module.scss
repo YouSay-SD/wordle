@@ -1,9 +1,11 @@
 @import "styles/baseline/_styles";
 
 .slot {
-  @include font(35, 41);
+  @include font(26, 32);
   @include flex-center;
 
+  min-width: 40px;
+  min-height: 40px;
   color: var(--color-button-text);
   background-color: var(--color-grey-light);
   border-radius: 5px;
@@ -11,7 +13,16 @@
   font-weight: map-get($font-weights, "heavy");
   text-transform: uppercase;
 
+  @include respond-above(sm) {
+    @include font(30, 36);
+
+    min-width: 55px;
+    min-height: 55px;
+  }
+
   @include respond-above(md) {
+    @include font(35, 41);
+
     min-width: 76px;
     min-height: 75px;
   }
