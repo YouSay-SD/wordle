@@ -1,0 +1,12 @@
+@import "styles/baseline/_styles";
+
+.board {
+  display: grid;
+  gap: 5px;
+  width: max-content;
+  margin: 0 auto;
+
+  @include respond-above(md) {
+    gap: 11px;
+  }
+}

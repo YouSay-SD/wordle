@@ -1,0 +1,13 @@
+@import "styles/baseline/_styles";
+
+.container {
+  max-width: map-get($max-width, "xl");
+  padding: 0 30px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+
+  @include respond-below(md) {
+    padding: 0 16px;
+  }
+}

@@ -1,0 +1,27 @@
+/* stylelint-disable selector-pseudo-class-no-unknown */
+@import "styles/baseline/_styles";
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 6.5px;
+  max-width: 638px;
+  padding: 33px 20px;
+  background-color: var(--color-grey);
+  border-radius: 15px;
+  justify-content: center;
+
+  @include respond-above (md) {
+    gap: 9px 9.5px;
+
+    :global {
+      .a {
+        margin-left: 22px;
+      }
+
+      .is-backspace {
+        margin-right: 65px;
+      }
+    }
+  }
+}
