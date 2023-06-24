@@ -1,6 +1,6 @@
 :root {
-  --color-white: #000;
-  --color-black: #fff;
+  --color-white: #fff;
+  --color-black: #000;
   --color-body: #f9f9f9;
   --color-primary: #6aaa64;
   --color-secondary: #ceb02c;
@@ -14,8 +14,8 @@
 }
 
 [data-theme="dark"] {
-  --color-white: #fff;
-  --color-black: #000;
+  --color-white: #000;
+  --color-black: #fff;
   --color-body: #262b3c;
   --color-primary: #6aaa64;
   --color-secondary: #ceb02c;

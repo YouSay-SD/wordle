@@ -22,12 +22,10 @@ const Modal: FC<ModalProps> = ({
   return (
     <ReactModal
       isOpen={isOpen}
-      className={className}
+      // className={cx(['modal', className])}
       contentLabel={contentLabel}
       onRequestClose={onRequestClose}
       onAfterOpen={onAfterOpen}
-      overlayClassName={cx(['overlay', overlayClassName])}
-      portalClassName={cx(['portal', portalClassName])}
       {...props}
     >
       {children}
