@@ -1,0 +1,16 @@
+// Media query breakpoints
+$breakpoints: (
+  xxl: 1400px,
+  xl: 1200px,
+  lg: 992px,
+  md: 768px,
+  sm: 576px,
+);
+
+// Max widths
+$max-width: (
+  xl: 1110px,
+  lg: 960px,
+  md: 720px,
+  sm: 540px,
+);

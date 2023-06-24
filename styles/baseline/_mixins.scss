@@ -1,0 +1,47 @@
+/* stylelint-disable scss/no-global-function-names */
+// Min width
+@mixin respond-above($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  }
+}
+
+// Max width
+@mixin respond-below($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @media (max-width: $breakpoint-value) {
+      @content;
+    }
+  }
+}
+
+// Screen reader snippet
+@mixin screen-reader-rules() {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  width: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  position: absolute !important;
+  left: -9999px;
+}
+
+// TODO: It could be usefull
+@mixin line-height-calc($heigt, $size) {
+  // line-height: calc(#{$heigt}em / $size);
+  line-height: calc(#{$heigt}em / #{$size});
+}
+
+@mixin font($size, $height) {
+  font-size: rem-calc($size);
+
+  // @include line-height-calc($size, $height);
+}
