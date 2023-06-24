@@ -1,13 +1,12 @@
-
 /* (Optional) Adapt to dark mode */
 @media (prefers-color-scheme: dark) {
-  :root{
-      --negro         : #ececec;
+  :root {
+    --negro: #ececec;
   }
 }
 
 /* (Optional) if user enable contrast mode (WD) */
-@media (prefers-contrast: high){
+@media (prefers-contrast: high) {
   :root{}
 }
 
@@ -20,32 +19,44 @@
 }
 
 /* Reset paddings/margins */
-* , *::before , *::after{
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
   vertical-align: baseline;
 }
-*::before , *::after{
+
+*::before,
+*::after {
   display: block;
 }
 
 /* Img fixes */
-img , picture , video , iframe , figure{
+img,
+picture,
+video,
+iframe,
+figure {
   max-width: 100%;
   width: 100%;
   display: block;
-  /* (Optional) */ object-fit: cover;        
-  /* (Optional) */ object-position: center center;
+
+  /* (Optional) */
+  object-fit: cover;
+
+  /* (Optional) */
+  object-position: center center;
 }
 
 /* Reset all links */
 a {
   display: block;
   text-decoration: none;
-  color:inherit;
-  font-size:inherit;
+  color: inherit;
+  font-size: inherit;
 }
 
 p a {
@@ -62,17 +73,34 @@ html {
 }
 
 /* Disable default styles for texts */
-h1 , h2 , h3 , h4 , h5 , h6 , p ,span , a , strong , blockquote , i , b , u , em {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+strong,
+blockquote,
+i,
+b,
+u,
+em {
   font-size: inherit;
   font-weight: inherit;
   font-style: inherit;
   text-decoration: none;
-  color:inherit;
+  color: inherit;
 }
 
-blockquote:before, blockquote:after, q:before, q:after {
-	content: '';
-	content: none;
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+  content: none;
 }
 
 /* (Optional) Config selection text */
@@ -81,23 +109,32 @@ blockquote:before, blockquote:after, q:before, q:after {
   color: var(--blanco);
 }
 
-form , input, textarea, select , button , label{
+form,
+input,
+textarea,
+select,
+button,
+label {
   font-family: inherit;
   font-size: inherit;
   hyphens: auto;
   background-color: transparent;
-  color:inherit;
+  color: inherit;
   display: block;
-  /* (Optional) */ appearance: none;
+
+  /* (Optional) */
+  appearance: none;
 }
 
-table , tr , td {
+table,
+tr,
+td {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-svg{
+svg {
   width: 100%;
   display: block;
-  fill: currentColor;
+  fill: currentcolor;
 }

@@ -1,15 +1,15 @@
 // Font Families
-$font-family: 'Roboto', -apple-system, blinkmacsystemfont, 'Segoe UI', helvetica, arial, sans-serif,
-  'Apple Color Emoji', 'Segoe UI Emoji';
+$font-family: "Roboto", -apple-system, blinkmacsystemfont, "Segoe UI", helvetica, arial, sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji";
 
 // Font Weights
 $font-weights: (
-  'light': 300,
-  'regular': 400,
-  'medium': 500,
-  'semi-bold': 600,
-  'bold': 700,
-  'heavy': 800,
-  'heavy-bold': 900,
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "semi-bold": 600,
+  "bold": 700,
+  "heavy": 800,
+  "heavy-bold": 900,
 );
 $global-transition: all 0.3s ease-in;

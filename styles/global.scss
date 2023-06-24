@@ -3,7 +3,7 @@
 // If a component has it's own styles, they can be found within the component's respective directory.
 
 @import "theme";
-@import 'reset';
+@import "reset";
 
 body {
   background-color: var(--color-body);

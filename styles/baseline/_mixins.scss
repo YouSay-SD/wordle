@@ -3,6 +3,7 @@
 @mixin respond-above($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     $breakpoint-value: map-get($breakpoints, $breakpoint);
+
     @media (min-width: $breakpoint-value) {
       @content;
     }
@@ -13,6 +14,7 @@
 @mixin respond-below($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     $breakpoint-value: map-get($breakpoints, $breakpoint);
+
     @media (max-width: $breakpoint-value) {
       @content;
     }

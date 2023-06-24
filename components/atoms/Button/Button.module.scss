@@ -1,7 +1,8 @@
-@import 'styles/baseline/_styles';
+@import "styles/baseline/_styles";
 
 .button {
   @include font(20, 26);
+
   cursor: pointer;
   outline: none;
   border: initial;
@@ -9,13 +10,14 @@
   background-color: var(--color-primary);
   transition: $global-transition;
   padding: 9px 25px;
-  
+
   @include respond-above(sm) {
     @include font(28, 32);
+
     min-width: 263px;
   }
 
   &:hover {
-    opacity: .9;
+    opacity: 0.9;
   }
 }
