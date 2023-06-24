@@ -1,5 +1,6 @@
 'use client'
 import Game from '@/components/organisms/Game/Game'
+import StatisticsModal from '@/components/organisms/StatisticsModal/StatisticsModal'
 import TutorialModal from '@/components/organisms/TutorialModal/TutorialModal'
 import { KEY_LOCAL_STORAGE } from '@/constants/keyLocalStorage'
 import { useEffect, useState } from 'react'
@@ -18,6 +19,7 @@ const GameTemplate = () => {
   return (
     <>
       <TutorialModal setIsGameStarted={setIsGameStarted} />
+      <StatisticsModal />
       <Game isGameStarted={isGameStarted} word={word} />
     </>
   )
