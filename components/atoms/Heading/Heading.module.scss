@@ -1,0 +1,25 @@
+@import "styles/baseline/_styles";
+
+.heading {
+  // Size: xs
+  &.xs {
+    @include font(20, 24);
+  }
+
+  // Size: sm
+  &.sm {
+    @include font(24, 30);
+  }
+
+  // Size: md
+  &.md {
+    @include font(35, 41);
+
+    font-weight: map-get($font-weights, "heavy");
+  }
+
+  // Size: lg
+  &.lg {
+    @include font(40, 47);
+  }
+}
