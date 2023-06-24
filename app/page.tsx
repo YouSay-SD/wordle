@@ -2,14 +2,14 @@
 
 import Container from '@/components/atoms/Container/Container'
 import Heading from '@/components/atoms/Heading/Heading'
-import Game from '@/components/organisms/Game/Game'
+import GameTemplate from '@/components/templates/GameTemplate/GameTemplate'
 
 export default function Home () {
   return (
     <main>
       <Container>
         <Heading>Hi there!</Heading>
-        <Game />
+        <GameTemplate />
       </Container>
     </main>
   )

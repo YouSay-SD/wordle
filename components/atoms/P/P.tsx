@@ -5,7 +5,7 @@ import { PProps } from './P.interface'
 
 const cx = className.bind(styles)
 
-const P:FC<PProps> = ({ children, size = 'sm', className = '' }) => (
+const P:FC<PProps> = ({ children, size = 'md', className }) => (
   <p className={cx(['p', size, className])}>{children}</p>
 )
 

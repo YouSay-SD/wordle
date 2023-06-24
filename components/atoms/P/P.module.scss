@@ -1,8 +1,8 @@
-@import 'styles/baseline/_styles';
+@import "styles/baseline/_styles";
 
 .p {
   font-family: $font-family;
-  font-weight: map-get($font-weights, 'regular');
+  font-weight: map-get($font-weights, "regular");
   color: var(--color-black);
 
   // Size: xs
@@ -17,10 +17,10 @@
 
   // Size: md
   &.md {
-    @include font(22, 28);
+    @include font(16, 19);
 
-    @include respond-below(md) {
-      @include font(20, 26);
+    @include respond-above(md) {
+      @include font(19, 22);
     }
   }
 
