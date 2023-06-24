@@ -1,4 +1,4 @@
-export type StatusProps = 'correct' | 'wrong' | 'close' | 'empty';
+export type StatusProps = 'success' | 'filled' | 'close' | 'empty';
 
 export interface SlotProps {
   value: string,

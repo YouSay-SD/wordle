@@ -1,4 +1,5 @@
-export const BACKSPACE_KEY = 'Backspace'
+export const BACKSPACE_KEY = 'backspace'
+export const ENTER_KEY = 'enter'
 
 export const KEYBOARD_SET = [
   { key: 'q' },
@@ -21,7 +22,7 @@ export const KEYBOARD_SET = [
   { key: 'k' },
   { key: 'l' },
   { key: 'ñ' },
-  { key: 'Enter' },
+  { key: ENTER_KEY },
   { key: 'z' },
   { key: 'x' },
   { key: 'c' },

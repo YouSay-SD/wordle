@@ -36,7 +36,14 @@
   left: -9999px;
 }
 
+// Accessibility font
 @mixin font($size, $height) {
   font-size: rem-calc($size);
   line-height: rem-calc($height);
+}
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
