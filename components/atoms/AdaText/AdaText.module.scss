@@ -1,0 +1,6 @@
+@import 'styles/baseline/_styles';
+
+// accessibility class for screen readers (this will hide from normal users)
+.screen-reader-only {
+  @include screen-reader-rules;
+}
