@@ -34,14 +34,7 @@
   left: -9999px;
 }
 
-// TODO: It could be usefull
-@mixin line-height-calc($heigt, $size) {
-  // line-height: calc(#{$heigt}em / $size);
-  line-height: calc(#{$heigt}em / #{$size});
-}
-
 @mixin font($size, $height) {
   font-size: rem-calc($size);
-
-  // @include line-height-calc($size, $height);
+  line-height: rem-calc($height);
 }
