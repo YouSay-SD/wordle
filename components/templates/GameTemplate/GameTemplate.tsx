@@ -4,11 +4,13 @@ import StatisticsModal from '@/components/organisms/StatisticsModal/StatisticsMo
 import TutorialModal from '@/components/organisms/TutorialModal/TutorialModal'
 import { KEY_LOCAL_STORAGE } from '@/constants/keyLocalStorage'
 import { useRandomWord } from '@/hooks/useRandomWord'
+import { useWordle } from '@/hooks/useWordle'
 import { useEffect, useState } from 'react'
 
 const GameTemplate = () => {
   const [isGameStarted, setIsGameStarted] = useState(false)
-  const { randomWord } = useRandomWord()
+  const { randomWord, timeRemaining } = useRandomWord()
+  const { slots, columnsQuantity, keySelected, score } = useWordle({ word: randomWord, isGameStarted })
 
   useEffect(() => {
     const gameStarted = Boolean(localStorage.getItem(KEY_LOCAL_STORAGE))
@@ -20,8 +22,8 @@ const GameTemplate = () => {
   return (
     <>
       <TutorialModal setIsGameStarted={setIsGameStarted} />
-      <StatisticsModal />
-      <Game isGameStarted={isGameStarted} word={randomWord} />
+      <StatisticsModal timeRemaining={timeRemaining} score={score} />
+      <Game columnsQuantity={columnsQuantity} keySelected={keySelected} slots={slots} />
     </>
   )
 }

@@ -18,6 +18,11 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
   const [keySelected, setKeySelected] = useState<string>('')
   const [indexPosition, setIndexPosition] = useState<number>(0)
   const [limitBackPosition, setLimitBackPosition] = useState<number>(0)
+  const [typed, setTypes] = useState<string>('')
+  const [score, setScore] = useState({
+    plays: 0,
+    victories: 0
+  })
 
   useEffect(() => {
     // Reset Game
@@ -58,8 +63,25 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
 
             if (currentSlot?.position === columnsQuantity) {
               setLimitBackPosition(limitBackPosition + columnsQuantity)
+              // Validate Slots
               const { slotsValidated } = validateSlots({ slots: slotsUpdated, key, wordMaped })
+              // const slotsValue = slotsValidated.map(({ value }) => value).join('')
               setSlots([...slotsValidated])
+
+              const valuesInRange = slotsValidated.slice(limitBackPosition, columnsQuantity + limitBackPosition).map(({ value }) => value)
+              const concatenatedValue = valuesInRange.join('')
+              const isMatch = concatenatedValue === word
+              if (isMatch) {
+                setScore((prev) => ({
+                  ...prev,
+                  victories: prev.victories + 1
+                }))
+              }
+
+              setScore((prev) => ({
+                ...prev,
+                plays: prev.plays + 1
+              }))
             }
           }
         }
@@ -70,7 +92,15 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
     return () => {
       window.removeEventListener('keydown', onKeyPress)
     }
-  }, [columnsQuantity, indexPosition, keySelected, limitBackPosition, slots, wordMaped, isGameStarted])
+  }, [columnsQuantity, indexPosition, keySelected, limitBackPosition, slots, wordMaped, isGameStarted, word, typed])
 
-  return { slots, columnsQuantity, keySelected }
+  useEffect(() => {
+    const wasEnterPressed = keySelected === ENTER_KEY
+    const wasBackspacePressed = keySelected === BACKSPACE_KEY
+    if (!wasBackspacePressed && !wasEnterPressed) {
+      setTypes((prev) => prev + keySelected)
+    }
+  }, [keySelected])
+
+  return { slots, columnsQuantity, keySelected, score }
 }

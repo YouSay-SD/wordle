@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 export const useRandomWord = () => {
   const [words, setWords] = useState<string[]>([])
   const [randomWord, setRandomWord] = useState<string>('')
+  const [timeRemaining, setTimeRemaining] = useState<number>(GAME_CONFIG.TIMER / 1000)
 
   useEffect(() => {
     const getWords = async () => {
@@ -15,6 +16,10 @@ export const useRandomWord = () => {
           return cleanedWord
         })
         setWords(wordsArray)
+
+        const randomIndex = Math.floor(Math.random() * wordsArray.length)
+        const randomWord = wordsArray[randomIndex]
+        setRandomWord(randomWord)
       } catch (error) {
         console.error('Error useRandomWord fetch', error)
       }
@@ -35,7 +40,25 @@ export const useRandomWord = () => {
     }
   }, [words])
 
+  // Update Time Remaining
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeRemaining((prevTime) => prevTime - 1)
+    }, 1000)
+
+    return () => {
+      clearInterval(timer)
+      setTimeRemaining(GAME_CONFIG.TIMER / 1000)
+    }
+  }, [randomWord])
+
+  // Format timer
+  const minutes = Math.floor(timeRemaining / 60)
+  const seconds = timeRemaining % 60
+  const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+
   return {
-    randomWord
+    randomWord: 'yousay',
+    timeRemaining: formattedTime
   }
 }

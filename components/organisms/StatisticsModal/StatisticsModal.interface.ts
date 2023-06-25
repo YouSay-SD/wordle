@@ -1,3 +1,4 @@
-export interface TutorialModalProps {
-  setIsGameStarted: any
+export interface StatisticsModalProps {
+  timeRemaining: string,
+  score: any
 }

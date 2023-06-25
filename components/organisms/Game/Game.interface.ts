@@ -1,4 +1,7 @@
+import { SlotProps } from '@/components/atoms/Slot/Slot.interface'
+
 export interface GameProps {
-  isGameStarted: boolean,
-  word: string
+  slots: SlotProps[],
+  keySelected: string,
+  columnsQuantity: number,
 }
