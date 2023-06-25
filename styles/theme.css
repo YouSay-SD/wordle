@@ -11,6 +11,9 @@
   --color-grey-dark: #818181;
   --color-grey-heavy: #56575e;
   --color-button-text: #fff;
+  --color-modal-background: #f3f3f3;
+  --color-modal-overlay: rgba(243, 243, 243, 89%);
+  --color-modal-border: rgba(0, 0, 0, 100%);
 }
 
 [data-theme="dark"] {
@@ -26,4 +29,7 @@
   --color-grey-dark: #818181;
   --color-grey-heavy: #56575e;
   --color-button-text: #fff;
+  --color-modal-background: #262b3c;
+  --color-modal-overlay: rgba(38, 43, 60, 89%);
+  --color-modal-border: rgba(147, 155, 159, 100%);
 }

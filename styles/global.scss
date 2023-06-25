@@ -9,10 +9,35 @@ body {
   background-color: var(--color-body);
 }
 
+// React Modal
 .ReactModal__Content {
   padding: 0 !important;
   max-width: 546px;
   margin: 0 auto;
-  border: 1px solid var(--color-black) !important;
+  border: 1px solid var(--color-modal-border) !important;
   border-radius: 10px !important;
+  background-color: var(--color-modal-background) !important;
+  max-height: max-content;
+  top: 50% !important;
+  transform: translateY(-50%);
+}
+
+.ReactModal__Overlay {
+  background-color: var(--color-modal-overlay) !important;
+}
+
+// Dark Theme Styles
+[data-theme="dark"] {
+  .circle-theme {
+    right: initial;
+    left: 5px;
+  }
+}
+
+// Light Theme Styles
+[data-theme="light"] {
+  .circle-theme {
+    left: initial;
+    right: 5px;
+  }
 }
