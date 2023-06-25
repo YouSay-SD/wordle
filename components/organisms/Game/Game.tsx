@@ -1,4 +1,3 @@
-'use client'
 import { FC } from 'react'
 import Keyboard from '@/components/molecules/Keyboard/Keyboard'
 import Board from '@/components/molecules/Board/Board'

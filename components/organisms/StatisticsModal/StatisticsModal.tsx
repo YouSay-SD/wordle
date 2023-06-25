@@ -1,5 +1,4 @@
-'use client'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import styles from './StatisticsModal.module.scss'
 import className from 'classnames/bind'
 import Modal from '@/components/molecules/Modal/Modal'
@@ -10,9 +9,7 @@ import { StatisticsModalProps } from './StatisticsModal.interface'
 
 const cx = className.bind(styles)
 
-const StatisticsModal: FC<StatisticsModalProps> = ({ timeRemaining, score }) => {
-  const [isOpen, setIsOpen] = useState(true)
-
+const StatisticsModal: FC<StatisticsModalProps> = ({ timeRemaining, score, setIsOpen, isOpen }) => {
   // Close Modal
   const closeModal = () => {
     setIsOpen(false)
