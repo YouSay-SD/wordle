@@ -5,6 +5,7 @@ import { deleteSlot } from '@/helpers/deleteSlot'
 import { addSlot } from '@/helpers/addSlot'
 import { validateSlots } from '@/helpers/validateSlots'
 import { SlotProps } from '@/components/atoms/Slot/Slot.interface'
+import { STATUS } from '@/constants/status'
 
 export interface UseWordleProps {
   word: string,
@@ -25,14 +26,15 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
     victories: 0
   })
 
+  // Reset Game
+  const resetGame = () => {
+    setKeySelected('')
+    setIndexPosition(0)
+    setLimitBackPosition(0)
+    setSlots(slotsMaped)
+  }
+
   useEffect(() => {
-    // Reset Game
-    const resetGame = () => {
-      setKeySelected('')
-      setIndexPosition(0)
-      setLimitBackPosition(0)
-      setSlots(slotsMaped)
-    }
     resetGame()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [word])
@@ -76,23 +78,31 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
                   ...prev,
                   victories: prev.victories + 1
                 }))
+                resetGame()
               }
-
-              setScore((prev) => ({
-                ...prev,
-                plays: prev.plays + 1
-              }))
             }
           }
         }
       }
     }
-
+    // console.log('slots', slots)
     window.addEventListener('keydown', onKeyPress)
     return () => {
       window.removeEventListener('keydown', onKeyPress)
     }
-  }, [columnsQuantity, indexPosition, keySelected, limitBackPosition, slots, wordMaped, isGameStarted, word, typed])
+  }, [columnsQuantity, indexPosition, keySelected, limitBackPosition, slots, wordMaped, isGameStarted, word, typed, resetGame])
+
+  useEffect(() => {
+    // Game Finished
+    const slotsSolved = !slots.some(({ status }) => status === STATUS.EMPTY)
+
+    if (slotsSolved) {
+      setScore((prev) => ({
+        ...prev,
+        plays: prev.plays + 1
+      }))
+    }
+  }, [slots])
 
   useEffect(() => {
     const wasEnterPressed = keySelected === ENTER_KEY
@@ -102,5 +112,5 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
     }
   }, [keySelected])
 
-  return { slots, columnsQuantity, keySelected, score }
+  return { slots, columnsQuantity, keySelected, score, resetGame }
 }

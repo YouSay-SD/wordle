@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 const GameTemplate = () => {
   const [isGameStarted, setIsGameStarted] = useState(false)
   const { randomWord, timeRemaining } = useRandomWord()
-  const { slots, columnsQuantity, keySelected, score } = useWordle({ word: randomWord, isGameStarted })
+  const { slots, columnsQuantity, keySelected, score, resetGame } = useWordle({ word: randomWord, isGameStarted })
   const [tutorialIsOpen, setTutorialIsOpen] = useState(false)
   const [statisticsIsOpen, setStatisticsIsOpen] = useState(false)
 
@@ -21,6 +21,13 @@ const GameTemplate = () => {
       setIsGameStarted(true)
     }
   }, [])
+
+  // Finish Game
+  useEffect(() => {
+    if (score.plays > 0 || score.victories > 0) {
+      setStatisticsIsOpen(true)
+    }
+  }, [score])
 
   return (
     <>
@@ -38,6 +45,7 @@ const GameTemplate = () => {
         score={score}
         setIsOpen={setStatisticsIsOpen}
         isOpen={statisticsIsOpen}
+        resetGame={resetGame}
       />
       <Game
         columnsQuantity={columnsQuantity}
