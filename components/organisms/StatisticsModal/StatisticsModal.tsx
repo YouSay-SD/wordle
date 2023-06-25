@@ -9,10 +9,16 @@ import { StatisticsModalProps } from './StatisticsModal.interface'
 
 const cx = className.bind(styles)
 
-const StatisticsModal: FC<StatisticsModalProps> = ({ timeRemaining, score, setIsOpen, isOpen }) => {
+const StatisticsModal: FC<StatisticsModalProps> = ({ timeRemaining, score, setIsOpen, isOpen, resetGame, isPlaying, setIsPlaying }) => {
   // Close Modal
   const closeModal = () => {
     setIsOpen(false)
+    if (!isPlaying) {
+      resetGame()
+      setIsPlaying(true)
+    } else {
+      setIsPlaying(true)
+    }
   }
 
   return (

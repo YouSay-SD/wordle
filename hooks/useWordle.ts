@@ -17,6 +17,7 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
   const columnsQuantity = word.length
   const { slotsMaped } = useCreateSlots({ columnsQuantity })
   const [slots, setSlots] = useState<SlotProps[]>(slotsMaped)
+  const [isPlaying, setIsPlaying] = useState<boolean>(true)
   const [keySelected, setKeySelected] = useState<string>('')
   const [indexPosition, setIndexPosition] = useState<number>(0)
   const [limitBackPosition, setLimitBackPosition] = useState<number>(0)
@@ -27,7 +28,9 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
   })
 
   // Reset Game
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const resetGame = () => {
+    console.log('RESET')
     setKeySelected('')
     setIndexPosition(0)
     setLimitBackPosition(0)
@@ -75,9 +78,10 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
               const isMatch = concatenatedValue === word
               if (isMatch) {
                 setScore((prev) => ({
-                  ...prev,
+                  plays: prev.plays + 1,
                   victories: prev.victories + 1
                 }))
+                setIsPlaying(false)
                 resetGame()
               }
             }
@@ -85,7 +89,7 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
         }
       }
     }
-    // console.log('slots', slots)
+
     window.addEventListener('keydown', onKeyPress)
     return () => {
       window.removeEventListener('keydown', onKeyPress)
@@ -95,12 +99,12 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
   useEffect(() => {
     // Game Finished
     const slotsSolved = !slots.some(({ status }) => status === STATUS.EMPTY)
-
-    if (slotsSolved) {
+    if (slotsSolved && slots.length) {
       setScore((prev) => ({
         ...prev,
         plays: prev.plays + 1
       }))
+      setIsPlaying(false)
     }
   }, [slots])
 
@@ -112,5 +116,5 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
     }
   }, [keySelected])
 
-  return { slots, columnsQuantity, keySelected, score, resetGame }
+  return { slots, columnsQuantity, keySelected, score, resetGame, isPlaying, setIsPlaying }
 }

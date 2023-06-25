@@ -15,10 +15,11 @@ export const useRandomWord = () => {
           const cleanedWord = word.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
           return cleanedWord
         })
-        setWords(wordsArray)
+        const wordsFiltered = wordsArray.filter((word) => word.length <= 5)
+        setWords(wordsFiltered)
 
-        const randomIndex = Math.floor(Math.random() * wordsArray.length)
-        const randomWord = wordsArray[randomIndex]
+        const randomIndex = Math.floor(Math.random() * wordsFiltered.length)
+        const randomWord = wordsFiltered[randomIndex]
         setRandomWord(randomWord)
       } catch (error) {
         console.error('Error useRandomWord fetch', error)
@@ -28,16 +29,23 @@ export const useRandomWord = () => {
     getWords()
   }, [])
 
+  // Reset Random Word
+  const resetWord = () => {
+    const randomIndex = Math.floor(Math.random() * words.length)
+    const randomWord = words[randomIndex]
+    setRandomWord(randomWord)
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * words.length)
-      const randomWord = words[randomIndex]
-      setRandomWord(randomWord)
+      resetWord()
     }, GAME_CONFIG.TIMER)
 
     return () => {
       clearInterval(interval)
     }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [words])
 
   // Update Time Remaining
@@ -58,7 +66,8 @@ export const useRandomWord = () => {
   const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
 
   return {
-    randomWord: 'yousay',
-    timeRemaining: formattedTime
+    randomWord,
+    timeRemaining: formattedTime,
+    resetWord
   }
 }
