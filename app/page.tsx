@@ -1,16 +1,13 @@
-// import Image from 'next/image'
-
-import Container from '@/components/atoms/Container/Container'
-import Heading from '@/components/atoms/Heading/Heading'
+'use client'
 import GameTemplate from '@/components/templates/GameTemplate/GameTemplate'
+import { ThemeProvider } from 'next-themes'
 
 export default function Home () {
   return (
     <main>
-      <Container>
-        <Heading>Hi there!</Heading>
+      <ThemeProvider defaultTheme='light'>
         <GameTemplate />
-      </Container>
+      </ThemeProvider>
     </main>
   )
 }

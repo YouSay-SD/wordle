@@ -4,6 +4,7 @@ import { BACKSPACE_KEY, ENTER_KEY, KEYBOARD_SET } from '@/constants/keyboardSet'
 import { deleteSlot } from '@/helpers/deleteSlot'
 import { addSlot } from '@/helpers/addSlot'
 import { validateSlots } from '@/helpers/validateSlots'
+import { SlotProps } from '@/components/atoms/Slot/Slot.interface'
 
 export interface UseWordleProps {
   word: string,
@@ -14,7 +15,7 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
   const wordMaped = word.split('')
   const columnsQuantity = word.length
   const { slotsMaped } = useCreateSlots({ columnsQuantity })
-  const [slots, setSlots] = useState(slotsMaped)
+  const [slots, setSlots] = useState<SlotProps[]>(slotsMaped)
   const [keySelected, setKeySelected] = useState<string>('')
   const [indexPosition, setIndexPosition] = useState<number>(0)
   const [limitBackPosition, setLimitBackPosition] = useState<number>(0)
@@ -57,15 +58,14 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
 
           // Next Slot
           if (!wasBackspacePressed && !wasEnterPressed && indexPosition < slots.length) {
-            const { slotsUpdated } = addSlot({ slots, indexPosition, key })
+            const slotsUpdated = addSlot({ slots, indexPosition, key })
             setSlots([...slotsUpdated])
             setIndexPosition((prev) => prev + 1)
 
             if (currentSlot?.position === columnsQuantity) {
               setLimitBackPosition(limitBackPosition + columnsQuantity)
               // Validate Slots
-              const { slotsValidated } = validateSlots({ slots: slotsUpdated, key, wordMaped })
-              // const slotsValue = slotsValidated.map(({ value }) => value).join('')
+              const slotsValidated = validateSlots({ slots: slotsUpdated, wordMaped })
               setSlots([...slotsValidated])
 
               const valuesInRange = slotsValidated.slice(limitBackPosition, columnsQuantity + limitBackPosition).map(({ value }) => value)

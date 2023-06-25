@@ -1,24 +1,22 @@
-import { SlotProps } from '@/components/atoms/Slot/Slot.interface'
+import { SlotProps, StatusProps } from '@/components/atoms/Slot/Slot.interface'
 import { STATUS } from '@/constants/status'
 
-type addSlotProps = {
+interface AddSlotProps {
   slots: SlotProps[],
   indexPosition: number,
   key: string
 }
 
-export const addSlot = ({ slots, indexPosition, key }: addSlotProps) => {
-  const slotsUpdated = slots.map((slot: SlotProps) => {
+export const addSlot = ({ slots, indexPosition, key }: AddSlotProps):SlotProps[] => {
+  const slotsUpdated: SlotProps[] = slots.map((slot: SlotProps):SlotProps => {
     return slot.index === indexPosition
       ? {
           ...slot,
           value: key,
-          status: STATUS.FILLED
+          status: STATUS.FILLED as StatusProps
         }
       : { ...slot }
   })
 
-  return {
-    slotsUpdated
-  }
+  return slotsUpdated
 }
