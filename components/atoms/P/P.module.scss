@@ -1,35 +1,38 @@
 @import "styles/baseline/_styles";
 
 .p {
-  font-family: $font-family;
   font-weight: map-get($font-weights, "regular");
   color: var(--color-black);
 
-  // Size: xs
-  &.xs {
-    @include font(13, 23);
+  span {
+    font-weight: map-get($font-weights, "bold");
   }
+}
 
-  // Size: sm
-  &.sm {
-    @include font(16, 24);
+// Size: xs
+.xs {
+  @include font(13, 23);
+}
+
+// Size: sm
+.sm {
+  @include font(16, 24);
+}
+
+// Size: md
+.md {
+  @include font(16, 19);
+
+  @include respond-above(md) {
+    @include font(19, 22);
   }
+}
 
-  // Size: md
-  &.md {
-    @include font(16, 19);
+// Size: lg
+.lg {
+  @include font(28, 32);
 
-    @include respond-above(md) {
-      @include font(19, 22);
-    }
-  }
-
-  // Size: lg
-  &.lg {
-    @include font(28, 32);
-
-    @include respond-below(md) {
-      @include font(24, 28);
-    }
+  @include respond-below(md) {
+    @include font(24, 28);
   }
 }

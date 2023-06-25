@@ -1,0 +1,23 @@
+@import "styles/baseline/_styles";
+
+.switch-theme {
+  max-width: 60px;
+  min-width: 60px;
+  height: 30px;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+}
+
+.circle {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-position: center;
+  background-size: cover;
+}

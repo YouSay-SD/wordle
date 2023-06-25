@@ -1,4 +1,4 @@
-import { SlotProps } from '@/components/atoms/Slot/Slot.interface'
+import { SlotProps, StatusProps } from '@/components/atoms/Slot/Slot.interface'
 import { STATUS } from '@/constants/status'
 
 type validateSlotsProps = {
@@ -6,8 +6,8 @@ type validateSlotsProps = {
   wordMaped: string[],
 }
 
-export const validateSlots = ({ slots, wordMaped }: validateSlotsProps) => {
-  const slotsValidated = slots.map((slot: SlotProps) => {
+export const actionValidateSlots = ({ slots, wordMaped }: validateSlotsProps) => {
+  const slotsValidated: SlotProps[] = slots.map((slot: SlotProps):SlotProps => {
     const isClose = wordMaped.find((letter: string) => letter === slot.value)
     const isSuccess = wordMaped[slot.position - 1] === slot.value
     let status = STATUS.FILLED
@@ -16,11 +16,9 @@ export const validateSlots = ({ slots, wordMaped }: validateSlotsProps) => {
 
     return {
       ...slot,
-      status: slot.status === STATUS.EMPTY ? STATUS.EMPTY : status
+      status: slot.status === STATUS.EMPTY ? STATUS.EMPTY : status as StatusProps
     }
   })
 
-  return {
-    slotsValidated
-  }
+  return slotsValidated
 }
