@@ -6,9 +6,9 @@ import Key from '@/components/atoms/Key/Key'
 import { KEYBOARD_SET } from '@/constants/keyboardSet'
 const cx = className.bind(styles)
 
-const Keyboard: FC<KeyboardProps> = ({ keySelected }) => {
+const Keyboard: FC<KeyboardProps> = ({ keySelected, className }) => {
   return (
-    <div className={cx('keyboard')}>
+    <div className={cx('keyboard', className)}>
       {KEYBOARD_SET.map(({ key }) => <Key key={key} value={key} isSelected={key === keySelected} />)}
     </div>
   )
