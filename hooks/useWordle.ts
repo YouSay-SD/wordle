@@ -19,13 +19,17 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
   const [indexPosition, setIndexPosition] = useState<number>(0)
   const [limitBackPosition, setLimitBackPosition] = useState<number>(0)
 
-  // Reset Game
-  const resetGame = () => {
-    setKeySelected('')
-    setIndexPosition(0)
-    setLimitBackPosition(0)
-    setSlots(slotsMaped)
-  }
+  useEffect(() => {
+    // Reset Game
+    const resetGame = () => {
+      setKeySelected('')
+      setIndexPosition(0)
+      setLimitBackPosition(0)
+      setSlots(slotsMaped)
+    }
+    resetGame()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [word])
 
   useEffect(() => {
     const onKeyPress = (e: KeyboardEvent) => {
@@ -68,5 +72,5 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
     }
   }, [columnsQuantity, indexPosition, keySelected, limitBackPosition, slots, wordMaped, isGameStarted])
 
-  return { slots, resetGame, columnsQuantity, keySelected }
+  return { slots, columnsQuantity, keySelected }
 }
