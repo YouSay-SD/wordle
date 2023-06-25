@@ -1,0 +1,24 @@
+@import "styles/baseline/_styles";
+
+.header {
+  padding: 18px 22px;
+  background-color: var(--color-modal-background);
+  border-radius: 15px;
+  max-width: 638px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  margin-bottom: 87px;
+}
+
+.right-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 11px;
+}
+
+.title {
+  text-align: center;
+}
