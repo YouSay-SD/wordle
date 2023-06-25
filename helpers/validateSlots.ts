@@ -13,8 +13,7 @@ export const actionValidateSlots = ({ slots, wordMaped }: validateSlotsProps) =>
     let status = STATUS.FILLED
     if (isClose) status = STATUS.CLOSE
     if (isSuccess) status = STATUS.SUCCESS
-    // console.log('wordMaped', wordMaped)
-    // console.log('slots', slots)
+
     return {
       ...slot,
       status: slot.status === STATUS.EMPTY ? STATUS.EMPTY : status as StatusProps
