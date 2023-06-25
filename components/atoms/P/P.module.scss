@@ -3,6 +3,10 @@
 .p {
   font-weight: map-get($font-weights, "regular");
   color: var(--color-black);
+
+  span {
+    font-weight: map-get($font-weights, "bold");
+  }
 }
 
 // Size: xs

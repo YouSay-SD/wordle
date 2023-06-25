@@ -10,6 +10,7 @@
   background-color: var(--color-primary);
   transition: $global-transition;
   padding: 9px 25px;
+  border-radius: 5px;
 
   @include respond-above(sm) {
     @include font(28, 32);
@@ -18,6 +19,6 @@
   }
 
   &:hover {
-    opacity: 0.9;
+    opacity: 0.8;
   }
 }
