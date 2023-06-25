@@ -7,7 +7,7 @@ interface AddSlotProps {
   key: string
 }
 
-export const addSlot = ({ slots, indexPosition, key }: AddSlotProps):SlotProps[] => {
+export const actionAddSlot = ({ slots, indexPosition, key }: AddSlotProps):SlotProps[] => {
   const slotsUpdated: SlotProps[] = slots.map((slot: SlotProps):SlotProps => {
     return slot.index === indexPosition
       ? {

@@ -4,14 +4,18 @@ import Header from '@/components/organisms/Header/Header'
 import StatisticsModal from '@/components/organisms/StatisticsModal/StatisticsModal'
 import TutorialModal from '@/components/organisms/TutorialModal/TutorialModal'
 import { KEY_LOCAL_STORAGE } from '@/constants/keyLocalStorage'
+import { WordleContext } from '@/context/wordleContext'
+import { useKeyboard } from '@/hooks/useKeyboard'
 import { useRandomWord } from '@/hooks/useRandomWord'
 import { useWordle } from '@/hooks/useWordle'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 const GameTemplate = () => {
+  const { slots, columnsQuantity, score } = useContext(WordleContext)
+  // console.log('valuesssss', values)
   const [isGameStarted, setIsGameStarted] = useState(false)
   const { randomWord, timeRemaining } = useRandomWord()
-  const { slots, columnsQuantity, keySelected, score, resetGame } = useWordle({ word: randomWord, isGameStarted })
+  const { keySelected, resetCompleteGame } = useKeyboard({ isGameStarted })
   const [tutorialIsOpen, setTutorialIsOpen] = useState(false)
   const [statisticsIsOpen, setStatisticsIsOpen] = useState(false)
 
@@ -45,7 +49,7 @@ const GameTemplate = () => {
         score={score}
         setIsOpen={setStatisticsIsOpen}
         isOpen={statisticsIsOpen}
-        resetGame={resetGame}
+        resetGame={resetCompleteGame}
       />
       <Game
         columnsQuantity={columnsQuantity}

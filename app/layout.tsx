@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import '../styles/global.scss'
 import { font } from './fonts'
+import { WordleProvider } from '@/context/wordleContext'
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +12,9 @@ export default function RootLayout ({ children }: {children: ReactNode}) {
   return (
     <html lang='en'>
       <body className={font.className}>
-        {children}
+        <WordleProvider>
+          {children}
+        </WordleProvider>
       </body>
     </html>
   )

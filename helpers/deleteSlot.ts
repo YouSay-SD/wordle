@@ -6,7 +6,7 @@ type deleteSlotProps = {
   indexPosition: number,
 }
 
-export const deleteSlot = ({ slots, indexPosition }: deleteSlotProps) => {
+export const actionRemoveSlot = ({ slots, indexPosition }: deleteSlotProps) => {
   const slotsUpdated = slots.map((slot: SlotProps) => {
     const indexValidation = (indexPosition - 1)
 
@@ -19,7 +19,5 @@ export const deleteSlot = ({ slots, indexPosition }: deleteSlotProps) => {
       : { ...slot }
   })
 
-  return {
-    slotsUpdated
-  }
+  return slotsUpdated
 }

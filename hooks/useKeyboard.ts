@@ -1,43 +1,49 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useCreateSlots } from './useCreateSlots'
 import { BACKSPACE_KEY, ENTER_KEY, KEYBOARD_SET } from '@/constants/keyboardSet'
 import { actionRemoveSlot } from '@/helpers/deleteSlot'
 import { actionAddSlot } from '@/helpers/addSlot'
-import { actionValidateSlots } from '@/helpers/validateSlots'
+import { actionValidateSlots, validateSlots } from '@/helpers/validateSlots'
 import { SlotProps } from '@/components/atoms/Slot/Slot.interface'
 import { STATUS } from '@/constants/status'
+import { WordleContext } from '@/context/wordleContext'
 
 export interface UseWordleProps {
-  word: string,
   isGameStarted: boolean
 }
 
-export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
-  const wordMaped = word.split('')
-  const columnsQuantity = word.length
-  const { slotsMaped } = useCreateSlots({ columnsQuantity })
-  const [slots, setSlots] = useState<SlotProps[]>(slotsMaped)
+export const useKeyboard = ({ isGameStarted }: UseWordleProps) => {
+  const {
+    slots,
+    victory,
+    plays,
+    score,
+    resetGame,
+    indexPosition,
+    setIndexPosition,
+    limitBackPosition,
+    setLimitBackPosition,
+    columnsQuantity,
+    wordMaped,
+    removeSlot,
+    addSlot,
+    randomWord,
+    validateSlots
+  } = useContext(WordleContext)
+  console.log('indexPosition', indexPosition)
   const [keySelected, setKeySelected] = useState<string>('')
-  const [indexPosition, setIndexPosition] = useState<number>(0)
-  const [limitBackPosition, setLimitBackPosition] = useState<number>(0)
   const [typed, setTypes] = useState<string>('')
-  const [score, setScore] = useState({
-    plays: 0,
-    victories: 0
-  })
 
   // Reset Game
-  const resetGame = () => {
+  const resetCompleteGame = () => {
     setKeySelected('')
-    setIndexPosition(0)
-    setLimitBackPosition(0)
-    setSlots(slotsMaped)
+    resetGame()
   }
 
   useEffect(() => {
-    resetGame()
+    resetCompleteGame()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [word])
+  }, [randomWord])
 
   useEffect(() => {
     const onKeyPress = (e: KeyboardEvent) => {
@@ -51,8 +57,7 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
 
           // Back Slot
           if (wasBackspacePressed && indexPosition > limitBackPosition) {
-            const { slotsUpdated } = actionRemoveSlot({ slots, indexPosition })
-            setSlots([...slotsUpdated])
+            removeSlot()
             setIndexPosition((prev) => prev - 1)
           }
 
@@ -60,24 +65,20 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
 
           // Next Slot
           if (!wasBackspacePressed && !wasEnterPressed && indexPosition < slots.length) {
-            const slotsUpdated = actionAddSlot({ slots, indexPosition, key })
-            setSlots([...slotsUpdated])
+            addSlot({ key })
             setIndexPosition((prev) => prev + 1)
 
             if (currentSlot?.position === columnsQuantity) {
               setLimitBackPosition(limitBackPosition + columnsQuantity)
+              // console.log('validateee')
               // Validate Slots
-              const slotsValidated = actionValidateSlots({ slots: slotsUpdated, wordMaped })
-              setSlots([...slotsValidated])
+              validateSlots()
 
-              const valuesInRange = slotsValidated.slice(limitBackPosition, columnsQuantity + limitBackPosition).map(({ value }) => value)
+              const valuesInRange = slots.slice(limitBackPosition, columnsQuantity + limitBackPosition).map(({ value }) => value)
               const concatenatedValue = valuesInRange.join('')
-              const isMatch = concatenatedValue === word
+              const isMatch = concatenatedValue === randomWord
               if (isMatch) {
-                setScore((prev) => ({
-                  ...prev,
-                  victories: prev.victories + 1
-                }))
+                victory()
                 resetGame()
               }
             }
@@ -90,19 +91,16 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
     return () => {
       window.removeEventListener('keydown', onKeyPress)
     }
-  }, [columnsQuantity, indexPosition, keySelected, limitBackPosition, slots, wordMaped, isGameStarted, word, typed, resetGame])
+  }, [columnsQuantity, indexPosition, keySelected, limitBackPosition, slots, randomWord, wordMaped, isGameStarted, typed, resetGame, removeSlot, setIndexPosition, setLimitBackPosition, victory, addSlot, validateSlots])
 
   useEffect(() => {
     // Game Finished
     const slotsSolved = !slots.some(({ status }) => status === STATUS.EMPTY)
 
     if (slotsSolved) {
-      setScore((prev) => ({
-        ...prev,
-        plays: prev.plays + 1
-      }))
+      plays()
     }
-  }, [slots])
+  }, [plays, slots])
 
   useEffect(() => {
     const wasEnterPressed = keySelected === ENTER_KEY
@@ -112,5 +110,5 @@ export const useWordle = ({ word, isGameStarted }: UseWordleProps) => {
     }
   }, [keySelected])
 
-  return { slots, columnsQuantity, keySelected, score, resetGame }
+  return { keySelected, resetCompleteGame }
 }

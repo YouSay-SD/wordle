@@ -6,14 +6,15 @@ type validateSlotsProps = {
   wordMaped: string[],
 }
 
-export const validateSlots = ({ slots, wordMaped }: validateSlotsProps) => {
+export const actionValidateSlots = ({ slots, wordMaped }: validateSlotsProps) => {
   const slotsValidated: SlotProps[] = slots.map((slot: SlotProps):SlotProps => {
     const isClose = wordMaped.find((letter: string) => letter === slot.value)
     const isSuccess = wordMaped[slot.position - 1] === slot.value
     let status = STATUS.FILLED
     if (isClose) status = STATUS.CLOSE
     if (isSuccess) status = STATUS.SUCCESS
-
+    // console.log('wordMaped', wordMaped)
+    // console.log('slots', slots)
     return {
       ...slot,
       status: slot.status === STATUS.EMPTY ? STATUS.EMPTY : status as StatusProps
