@@ -21,7 +21,6 @@ export const useRandomWord = (): UseRandomWordProps => {
 
   // Create Slots Empty
   const createSlotsEmpty = ({ newRandomWord }: { newRandomWord: string }) => {
-    console.log('newRandomWord', newRandomWord)
     if (newRandomWord) {
       const columnsQuantity = newRandomWord?.length
       const slotsQuantity = GAME_ROWS * columnsQuantity
@@ -88,8 +87,6 @@ export const useRandomWord = (): UseRandomWordProps => {
       setTimeRemaining(GAME_CONFIG.TIMER / 1000)
     }
   }, [randomWord])
-
-  console.log('timeRemaining', timeRemaining)
 
   // Format timer
   const formattedTime = formatTimer(timeRemaining)

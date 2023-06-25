@@ -27,18 +27,28 @@ body {
   background-color: var(--color-modal-overlay) !important;
 }
 
-// Dark Theme Styles
-[data-theme="dark"] {
+// Light Theme Styles
+[data-theme="light"] {
+  .switch-theme {
+    background-image: url("/imgs/light.png");
+  }
+
   .circle-theme {
-    right: initial;
-    left: 5px;
+    background-image: url("/imgs/circle-light.svg");
+    left: initial;
+    right: 5px;
   }
 }
 
-// Light Theme Styles
-[data-theme="light"] {
+// Dark Theme Styles
+[data-theme="dark"] {
+  .switch-theme {
+    background-image: url("/imgs/dark.png");
+  }
+
   .circle-theme {
-    left: initial;
-    right: 5px;
+    background-image: url("/imgs/circle-dark.svg");
+    right: initial;
+    left: 5px;
   }
 }

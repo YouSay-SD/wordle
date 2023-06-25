@@ -21,7 +21,7 @@ export const WordleProvider: FC<WordleProviderProps> = ({ children }) => {
   const [isGameStarted, setIsGameStarted] = useState<boolean>(initialState.isGameStarted)
   const [slots, setSlots] = useState<SlotProps[]>(slotsEmpty)
   const [score, setScore] = useState<ScoreProps>(initialState.score)
-  console.log('score', score)
+
   // Is Game Started
   useEffect(() => {
     const gameStarted = Boolean(localStorage.getItem(KEY_LOCAL_STORAGE))

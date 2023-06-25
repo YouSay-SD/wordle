@@ -12,7 +12,7 @@ const SwitchTheme = () => {
   }
 
   return (
-    <button onClick={toggleTheme} className={cx('switch-theme')}>
+    <button onClick={toggleTheme} className={`${cx('switch-theme')} switch-theme`}>
       <div className={`${cx('circle')} circle-theme`} />
     </button>
   )
