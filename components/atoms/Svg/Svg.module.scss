@@ -1,0 +1,19 @@
+@import "styles/baseline/_styles";
+
+.backspace-button-svg {
+  path {
+    fill: var(--color-grey-heavy);
+  }
+}
+
+.tutorial-button-svg {
+  g {
+    fill: var(--color-grey-dark);
+  }
+}
+
+.statistics-button-svg {
+  rect {
+    fill: var(--color-grey-dark);
+  }
+}

@@ -45,19 +45,19 @@ const StatisticsModal: FC<StatisticsModalProps> = ({ setIsOpen, isOpen }) => {
         </div>
 
         <div className={cx('scores')}>
-          <div className={cx('score')}>
-            <P>{score.plays}</P>
-            <P>Jugadas</P>
+          <div className={cx('score-container')}>
+            <P className={cx('score')}>{score.plays}</P>
+            <P className={cx('score-text')}>Jugadas</P>
           </div>
-          <div className={cx('score')}>
-            <P>{score.victories}</P>
-            <P>Victorias</P>
+          <div className={cx('score-container')}>
+            <P className={cx('score')}>{score.victories}</P>
+            <P className={cx('score-text')}>Victorias</P>
           </div>
         </div>
 
         <div className={cx('timer-container')}>
-          <P>SIGUIENTE PALABRA</P>
-          <P>{formattedTime}</P>
+          <P className={cx('timer-text')}>SIGUIENTE PALABRA</P>
+          <P className={cx('timer-count')}>{formattedTime}</P>
         </div>
 
         <Button className={cx('button')} buttonText='Aceptar' adaText='Aceptar' onClick={closeModal} />

@@ -4,7 +4,7 @@
   padding: 34px 22px;
 
   @include respond-above(sm) {
-    padding: 54px 42px;
+    padding: 59px 78px 24px;
   }
 }
 
@@ -26,4 +26,42 @@
 
 .button {
   margin: 0 auto;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 55px;
+}
+
+.score-container {
+  text-align: center;
+}
+
+.score {
+  @include font(35, 41);
+
+  font-weight: map-get($font-weights, "heavy");
+  margin-bottom: 16px;
+}
+
+.score-text {
+  @include font(21, 24);
+}
+
+.timer-container {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.timer-text {
+  @include font(19, 22);
+
+  margin-bottom: 17px;
+}
+
+.timer-count {
+  @include font(24, 28);
+
+  font-weight: map-get($font-weights, "bold");
 }
