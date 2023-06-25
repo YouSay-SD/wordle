@@ -122,6 +122,7 @@ export const WordleProvider: FC<WordleProviderProps> = ({ children }) => {
       limitBackPosition,
       columnsQuantity,
       isGameStarted,
+      randomWord,
       setIsGameStarted,
       setLimitBackPosition,
       setIndexPosition,

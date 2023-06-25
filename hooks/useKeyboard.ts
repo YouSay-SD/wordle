@@ -14,7 +14,6 @@ export interface UseKeyboardProps {
 export const useKeyboard = (): UseKeyboardProps => {
   const {
     slots,
-    resetGame,
     indexPosition,
     limitBackPosition,
     removeSlot,
@@ -27,7 +26,6 @@ export const useKeyboard = (): UseKeyboardProps => {
   // Reset Game
   const resetCompleteGame = () => {
     setKeySelected('')
-    resetGame()
   }
 
   useEffect(() => {
@@ -53,7 +51,7 @@ export const useKeyboard = (): UseKeyboardProps => {
 
           // Next Slot
           if (!wasBackspacePressed && !wasEnterPressed && indexPosition < slots.length) {
-            addSlot({ indexPosition, key })
+            addSlot({ key })
           }
         }
       }

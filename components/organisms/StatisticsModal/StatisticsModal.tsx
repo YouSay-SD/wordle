@@ -8,11 +8,12 @@ import Button from '@/components/atoms/Button/Button'
 import { StatisticsModalProps } from './StatisticsModal.interface'
 import { useWordle } from '@/hooks/useWordle'
 import { ENTER_KEY } from '@/constants/keyboardSet'
+import { WordleContextProps } from '@/context/WordleContext.interface'
 
 const cx = className.bind(styles)
 
 const StatisticsModal: FC<StatisticsModalProps> = ({ setIsOpen, isOpen }) => {
-  const { formattedTime, score } = useWordle()
+  const { formattedTime, score }: WordleContextProps = useWordle()
 
   // Close Modal
   const closeModal = () => {

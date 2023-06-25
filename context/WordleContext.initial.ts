@@ -4,7 +4,7 @@ export const initialState: WordleContextProps = {
   slots: [],
   setSlots: () => {},
   score: {
-    plays: -1,
+    plays: 0,
     victories: 0
   },
   wordMaped: undefined,
@@ -22,5 +22,6 @@ export const initialState: WordleContextProps = {
   removeSlot: () => {},
   addSlot: () => {},
   victoryScore: () => {},
-  playsScore: () => {}
+  playsScore: () => {},
+  randomWord: ''
 }

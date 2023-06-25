@@ -26,6 +26,7 @@ export interface WordleContextProps {
   addSlot: (props: { key: string }) => void;
   victoryScore: () => void;
   playsScore: () => void;
+  randomWord: string;
 }
 
 export interface WordleProviderProps {
