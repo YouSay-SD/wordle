@@ -3,11 +3,12 @@ import Game from '@/components/organisms/Game/Game'
 import StatisticsModal from '@/components/organisms/StatisticsModal/StatisticsModal'
 import TutorialModal from '@/components/organisms/TutorialModal/TutorialModal'
 import { KEY_LOCAL_STORAGE } from '@/constants/keyLocalStorage'
+import { useRandomWord } from '@/hooks/useRandomWord'
 import { useEffect, useState } from 'react'
 
 const GameTemplate = () => {
   const [isGameStarted, setIsGameStarted] = useState(false)
-  const word = 'yousay'
+  const { randomWord } = useRandomWord()
 
   useEffect(() => {
     const gameStarted = Boolean(localStorage.getItem(KEY_LOCAL_STORAGE))
@@ -20,7 +21,7 @@ const GameTemplate = () => {
     <>
       <TutorialModal setIsGameStarted={setIsGameStarted} />
       <StatisticsModal />
-      <Game isGameStarted={isGameStarted} word={word} />
+      <Game isGameStarted={isGameStarted} word={randomWord} />
     </>
   )
 }

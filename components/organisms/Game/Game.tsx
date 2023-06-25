@@ -9,7 +9,7 @@ import { GameProps } from './Game.interface'
 const cx = className.bind(styles)
 
 const Game: FC<GameProps> = ({ isGameStarted, word }) => {
-  const { slots, columnsQuantity, keySelected, resetGame } = useWordle({ word, isGameStarted })
+  const { slots, columnsQuantity, keySelected } = useWordle({ word, isGameStarted })
 
   return (
     <div className={cx('game')}>
