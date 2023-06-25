@@ -10,6 +10,7 @@ import { StatusProps } from '@/components/atoms/Slot/Slot.interface'
 import Button from '@/components/atoms/Button/Button'
 import { KEY_LOCAL_STORAGE } from '@/constants/keyLocalStorage'
 import { TutorialModalProps } from './TutorialModal.interface'
+import { ENTER_KEY } from '@/constants/keyboardSet'
 const cx = className.bind(styles)
 
 const TutorialModal: FC<TutorialModalProps> = ({ setIsGameStarted, setIsOpen, isOpen }) => {
@@ -26,6 +27,21 @@ const TutorialModal: FC<TutorialModalProps> = ({ setIsGameStarted, setIsOpen, is
     if (!skipTutorialStorage) {
       setIsOpen(true)
     }
+  }, [setIsOpen])
+
+  // Close modal with Enter
+  useEffect(() => {
+    const onKeyPress = ({ key }: KeyboardEvent) => {
+      if (key.toLowerCase() === ENTER_KEY) {
+        closeModal()
+      }
+    }
+
+    window.addEventListener('keydown', onKeyPress)
+    return () => {
+      window.removeEventListener('keydown', onKeyPress)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setIsOpen])
 
   return (

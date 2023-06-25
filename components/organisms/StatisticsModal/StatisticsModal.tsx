@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './StatisticsModal.module.scss'
 import className from 'classnames/bind'
 import Modal from '@/components/molecules/Modal/Modal'
@@ -6,14 +6,32 @@ import Heading from '@/components/atoms/Heading/Heading'
 import P from '@/components/atoms/P/P'
 import Button from '@/components/atoms/Button/Button'
 import { StatisticsModalProps } from './StatisticsModal.interface'
+import { useWordle } from '@/hooks/useWordle'
+import { ENTER_KEY } from '@/constants/keyboardSet'
 
 const cx = className.bind(styles)
 
-const StatisticsModal: FC<StatisticsModalProps> = ({ timeRemaining, score, setIsOpen, isOpen }) => {
+const StatisticsModal: FC<StatisticsModalProps> = ({ setIsOpen, isOpen }) => {
+  const { formattedTime, score } = useWordle()
+
   // Close Modal
   const closeModal = () => {
     setIsOpen(false)
   }
+
+  // Close modal with Enter
+  useEffect(() => {
+    const onKeyPress = ({ key }: KeyboardEvent) => {
+      if (key.toLowerCase() === ENTER_KEY) {
+        setIsOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', onKeyPress)
+    return () => {
+      window.removeEventListener('keydown', onKeyPress)
+    }
+  }, [setIsOpen])
 
   return (
     <Modal
@@ -39,7 +57,7 @@ const StatisticsModal: FC<StatisticsModalProps> = ({ timeRemaining, score, setIs
 
         <div className={cx('timer-container')}>
           <P>SIGUIENTE PALABRA</P>
-          <P>{timeRemaining}</P>
+          <P>{formattedTime}</P>
         </div>
 
         <Button className={cx('button')} buttonText='Aceptar' adaText='Aceptar' onClick={closeModal} />

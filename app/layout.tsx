@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import '../styles/global.scss'
 import { font } from './fonts'
-import { WordleProvider } from '@/context/wordleContext'
+import { WordleProvider } from '@/context/WordleContext'
 
 export const metadata = {
   title: 'Create Next App',
