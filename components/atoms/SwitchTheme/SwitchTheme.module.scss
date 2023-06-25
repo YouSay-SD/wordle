@@ -1,0 +1,22 @@
+@import "styles/baseline/_styles";
+
+.switch-theme {
+  max-width: 60px;
+  min-width: 60px;
+  height: 30px;
+  background-color: black;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.circle {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background-color: grey;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: $global-transition;
+}
