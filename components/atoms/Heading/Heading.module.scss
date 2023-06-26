@@ -20,6 +20,10 @@
 
   // Size: lg
   &.lg {
-    @include font(40, 47);
+    @include font(20, 27);
+
+    @include respond-above(md) {
+      @include font(40, 47);
+    }
   }
 }

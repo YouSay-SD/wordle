@@ -9,6 +9,7 @@ export interface UseWordleProps {
 export interface UseKeyboardProps {
   keySelected: string;
   resetCompleteGame: () => void;
+  handleKeyPress: (keyValue: string) => void;
 }
 
 export const useKeyboard = (): UseKeyboardProps => {
@@ -33,35 +34,41 @@ export const useKeyboard = (): UseKeyboardProps => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [randomWord])
 
-  useEffect(() => {
-    const onKeyPress = (e: KeyboardEvent) => {
-      if (isGameStarted) {
-        const key = e.key.toLowerCase()
-        const isKeyAllowed = KEYBOARD_SET.some((keyValue) => keyValue.key === key)
-        if (isKeyAllowed) {
-          const wasEnterPressed = key === ENTER_KEY
-          const wasBackspacePressed = key === BACKSPACE_KEY
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleKeyPress = (keyValue : string) => {
+    if (isGameStarted) {
+      const key = keyValue.toLowerCase()
+      const isKeyAllowed = KEYBOARD_SET.some((keyValue) => keyValue.key === key)
+      if (isKeyAllowed) {
+        const wasEnterPressed = key === ENTER_KEY
+        const wasBackspacePressed = key === BACKSPACE_KEY
 
-          // Back Slot
-          if (wasBackspacePressed && indexPosition > limitBackPosition) {
-            removeSlot()
-          }
+        // Back Slot
+        if (wasBackspacePressed && indexPosition > limitBackPosition) {
+          removeSlot()
+        }
 
-          setKeySelected(key)
+        setKeySelected(key)
 
-          // Next Slot
-          if (!wasBackspacePressed && !wasEnterPressed && indexPosition < slots.length) {
-            addSlot({ key })
-          }
+        // Next Slot
+        if (!wasBackspacePressed && !wasEnterPressed && indexPosition < slots.length) {
+          addSlot({ key })
         }
       }
+    }
+  }
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const onKeyPress = ({ key }: any) => {
+      handleKeyPress(key)
     }
 
     window.addEventListener('keydown', onKeyPress)
     return () => {
       window.removeEventListener('keydown', onKeyPress)
     }
-  }, [addSlot, indexPosition, isGameStarted, limitBackPosition, removeSlot, slots.length])
+  }, [handleKeyPress])
 
-  return { keySelected, resetCompleteGame }
+  return { keySelected, resetCompleteGame, handleKeyPress }
 }

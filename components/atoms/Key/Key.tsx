@@ -6,10 +6,14 @@ import { BACKSPACE_KEY } from '@/constants/keyboardSet'
 import { BackspaceSVG } from '@/components/atoms/Svg'
 const cx = className.bind(styles)
 
-const Key: FC<KeyProps> = ({ value, isSelected }) => {
+const Key: FC<KeyProps> = ({ value, isSelected, handleKeyPress }) => {
   const isBackspaceKey = value === BACKSPACE_KEY
+
   return (
-    <button className={cx('key', value, { 'is-selected': isSelected }, { 'is-backspace': isBackspaceKey })}>
+    <button
+      className={cx('key', value, { 'is-selected': isSelected }, { 'is-backspace': isBackspaceKey })}
+      onClick={() => handleKeyPress(value)}
+    >
       {isBackspaceKey ? <BackspaceSVG /> : value}
     </button>
   )

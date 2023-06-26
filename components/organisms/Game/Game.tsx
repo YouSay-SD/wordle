@@ -4,14 +4,15 @@ import Board from '@/components/molecules/Board/Board'
 import className from 'classnames/bind'
 import styles from './Game.module.scss'
 import { GameProps } from './Game.interface'
+import Container from '@/components/atoms/Container/Container'
 const cx = className.bind(styles)
 
-const Game: FC<GameProps> = ({ slots, columnsQuantity, keySelected }) => {
+const Game: FC<GameProps> = ({ slots, columnsQuantity }) => {
   return (
-    <div className={cx('game')}>
+    <Container className={cx('game')}>
       <Board slots={slots} col={columnsQuantity} />
-      <Keyboard className={cx('game-keyboard')} keySelected={keySelected} />
-    </div>
+      <Keyboard className={cx('game-keyboard')} />
+    </Container>
   )
 }
 

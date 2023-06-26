@@ -18,6 +18,7 @@
   @include font(16, 19);
   @include flex-center;
 
+  cursor: pointer;
   font-weight: map-get($font-weights, "semi-bold");
   background-color: var(--color-grey-regular);
   color: var(--color-grey-heavy);

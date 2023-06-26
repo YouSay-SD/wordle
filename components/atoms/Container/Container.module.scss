@@ -2,12 +2,12 @@
 
 .container {
   max-width: map-get($max-width, "xl");
-  padding: 0 30px;
   margin-right: auto;
   margin-left: auto;
   width: 100%;
+  padding: 0 16px;
 
-  @include respond-below(md) {
-    padding: 0 16px;
+  @include respond-above(md) {
+    padding: 0 30px;
   }
 }
