@@ -55,7 +55,7 @@ export const useRandomWord = (): UseRandomWordProps => {
           const cleanedWord = word.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
           return cleanedWord
         })
-        const wordsFiltered = wordsArray.filter((word) => word.length <= 5)
+        const wordsFiltered = wordsArray.filter((word) => word.length === GAME_CONFIG.ROWS)
         setWords(wordsFiltered)
 
         const randomIndex = Math.floor(Math.random() * wordsFiltered.length)
