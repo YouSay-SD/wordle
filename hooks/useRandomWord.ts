@@ -1,4 +1,4 @@
-import { GAME_CONFIG, GAME_ROWS } from '@/constants/gameConfig'
+import { GAME_CONFIG } from '@/constants/gameConfig'
 import { useEffect, useState } from 'react'
 import { SlotProps, StatusProps } from '@/components/atoms/Slot/Slot.interface'
 import { STATUS } from '@/constants/status'
@@ -23,7 +23,7 @@ export const useRandomWord = (): UseRandomWordProps => {
   const createSlotsEmpty = ({ newRandomWord }: { newRandomWord: string }) => {
     if (newRandomWord) {
       const columnsQuantity = newRandomWord?.length
-      const slotsQuantity = GAME_ROWS * columnsQuantity
+      const slotsQuantity = GAME_CONFIG.ROWS * columnsQuantity
       let position = 1
       let started = false
 
