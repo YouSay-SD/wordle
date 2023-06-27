@@ -4,6 +4,7 @@ import className from 'classnames/bind'
 import { KeyProps } from './Key.interface'
 import { BACKSPACE_KEY } from '@/constants/keyboardSet'
 import { BackspaceSVG } from '@/components/atoms/Svg'
+import AdaText from '../AdaText/AdaText'
 const cx = className.bind(styles)
 
 const Key: FC<KeyProps> = ({ value, isSelected, handleKeyPress }) => {
@@ -15,6 +16,7 @@ const Key: FC<KeyProps> = ({ value, isSelected, handleKeyPress }) => {
       onClick={() => handleKeyPress(value)}
     >
       {isBackspaceKey ? <BackspaceSVG /> : value}
+      <AdaText adaText={`${value} key`} />
     </button>
   )
 }

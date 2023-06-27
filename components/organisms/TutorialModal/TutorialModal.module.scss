@@ -27,6 +27,10 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 11px;
   margin: 24px 0 19px;
+
+  div {
+    color: var(--color-black);
+  }
 }
 
 .button {

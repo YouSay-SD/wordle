@@ -52,7 +52,7 @@ const TutorialModal: FC<TutorialModalProps> = ({ setIsGameStarted, setIsOpen, is
     >
       <div className={cx('tutorial-modal')}>
         <div className={cx('explanation')}>
-          <Heading className={cx('center-text')}>Cómo jugar</Heading>
+          <Heading level='h2' className={cx('center-text')}>Cómo jugar</Heading>
           <P>Adivina la palabra oculta en cinco intentos. </P>
           <br />
           <P>Cada intento debe ser una palabra válida de 5 letras.</P>

@@ -42,7 +42,7 @@ const StatisticsModal: FC<StatisticsModalProps> = ({ setIsOpen, isOpen }) => {
     >
       <div className={cx('statistics-modal')}>
         <div className={cx('title-container')}>
-          <Heading className={cx('center-text')}>Estadísticas</Heading>
+          <Heading level='h2' className={cx('center-text')}>Estadísticas</Heading>
         </div>
 
         <div className={cx('scores')}>
