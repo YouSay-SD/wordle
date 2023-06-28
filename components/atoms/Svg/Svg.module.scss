@@ -8,12 +8,18 @@
 
 .tutorial-button-svg {
   g {
-    fill: var(--color-grey-dark);
+    path {
+      fill: var(--color-icon);
+    }
   }
 }
 
 .statistics-button-svg {
   rect {
-    fill: var(--color-grey-dark);
+    fill: var(--color-icon);
+  }
+
+  path {
+    stroke: var(--color-header) !important;
   }
 }

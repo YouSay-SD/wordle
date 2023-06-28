@@ -9,8 +9,10 @@ type validateSlotsProps = {
 export const actionValidateSlots = ({ slots, wordMaped }: validateSlotsProps) => {
   const slotsValidated: SlotProps[] = slots.map((slot: SlotProps):SlotProps => {
     const isClose = wordMaped.find((letter: string) => letter === slot.value)
+    const isWrong = !wordMaped.find((letter: string) => letter === slot.value)
     const isSuccess = wordMaped[slot.position - 1] === slot.value
     let status = STATUS.FILLED
+    if (isWrong) status = STATUS.WRONG
     if (isClose) status = STATUS.CLOSE
     if (isSuccess) status = STATUS.SUCCESS
 

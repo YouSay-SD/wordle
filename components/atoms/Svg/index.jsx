@@ -21,7 +21,7 @@ const TutorialButtonSVG = (props) => {
   )
 }
 
-const StatisticsButtonPath = '<rect x="4.93549" y="6" width="29.6129" height="24" rx="2" fill="black" fill-opacity="0.49"/><path d="M13.1613 15L13.1613 24" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.7419 18V24" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M26.3226 12V24" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>'
+const StatisticsButtonPath = '<rect x="4.93549" y="6" width="29.6129" height="24" rx="2" fill="black"/><path d="M13.1613 15L13.1613 24" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.7419 18V24" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M26.3226 12V24" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>'
 const StatisticsButtonSVG = (props) => {
   return (
     <Icon width='40px' height='36px' viewBox='0 0 40 36' {...props} style={{ cursor: 'pointer' }} className={cx('statistics-button-svg')}>

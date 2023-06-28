@@ -1,5 +1,6 @@
 :root {
   --color-white: #fff;
+  --color-white-secondary: #fff;
   --color-black: #000;
   --color-body: #f9f9f9;
   --color-primary: #6aaa64;
@@ -15,10 +16,12 @@
   --color-modal-overlay: rgba(243, 243, 243, 89%);
   --color-modal-border: rgba(0, 0, 0, 100%);
   --color-header: #f3f3f3;
+  --color-icon: rgba(0, 0, 0, 49%);
 }
 
 [data-theme="dark"] {
   --color-white: #000;
+  --color-white-secondary: #262b3c;
   --color-black: #fff;
   --color-body: #262b3c;
   --color-primary: #6aaa64;
@@ -33,5 +36,6 @@
   --color-modal-background: #262b3c;
   --color-modal-overlay: rgba(38, 43, 60, 89%);
   --color-modal-border: rgba(147, 155, 159, 100%);
-  --color-header: rgba(218, 220, 224, 3%);
+  --color-header: #2c3141;
+  --color-icon: #fff;
 }
